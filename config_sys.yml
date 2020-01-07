@@ -17,7 +17,7 @@
     package:
             name: "{{item.package}}"
             state: present
-    with_item:
-            - {name: vim }
-            - {name: htop }         
+    with_items:
+            - {package: vim }
+            - {package: htop }         
             
