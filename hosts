@@ -1,6 +1,0 @@
-[Office]
-10.0.0.101 ansible_ssh_user=itescia
-10.0.0.102 ansible_ssh_user=itesciadmin
-10.0.0.103 ansible_ssh_user=itesciadmin
-10.0.0.254 ansible_ssh_user=itesciadmin
-
