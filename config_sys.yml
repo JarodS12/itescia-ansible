@@ -2,22 +2,30 @@
 
 - hosts: all
   become: true
+  vars:
+          users: [ itesciatest, itesciatest1, itesciatest2 ]
+          package: [ vim, htop ] 
+
 
   tasks:
   - name: "Add users"
+    when: users is defined
     user:
-            name: "{{item.name}}"
-    with_items:
-            - { name: itesciatest }
-            - { name: itesciatest1 }
-            - { name: itesciatest2 }
+            name: "{{ item }}"
+    with_items: "{{ users }}"
 
 
   - name: "Deploying packages..."
+    when: package is defined
     package:
-            name: "{{item.package}}"
+            name: "{{ item }}"
+    state: present         
+    loop: "{{ package }}"
+
+  - name: "Add SSH keys..."
+    when: users is defined
+    authorized_key:
+            user: "{{ item }}"
             state: present
-    with_items:
-            - {package: vim }
-            - {package: htop }         
-            
+            key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+    with_items: "{{ users }}"
