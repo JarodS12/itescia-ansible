@@ -1,29 +1,23 @@
 ---
 
 - hosts: all
+  become: true
 
   tasks:
-  - name: "Add user itesciatest"
-    become: true
+  - name: "Add users"
     user:
-            name: itesciatest
+            name: "{{item.name}}"
+    with_items:
+            - { name: itesciatest }
+            - { name: itesciatest1 }
+            - { name: itesciatest2 }
 
-  - name: "Deploying package htop"
-    become: true
+
+  - name: "Deploying packages..."
     package:
-            name: htop
+            name: "{{item.package}}"
             state: present
+    with_item:
+            - {name: vim }
+            - {name: htop }         
             
-  - name: "Deploying package vim"
-    become: true
-    package:
-            name: vim
-            state: present
-            
-            
-            
-            
-            
-
-
-

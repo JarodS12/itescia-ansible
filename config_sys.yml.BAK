@@ -4,10 +4,10 @@
   vars:
 
   tasks:
-  - name: "Add user itesciadmin"
+  - name: "Add user itesciatest"
     become: true
     user:
-            name: itesciadmin
+            name: itesciatest
   
   - name: "Deploying package apache2"
     become: true
