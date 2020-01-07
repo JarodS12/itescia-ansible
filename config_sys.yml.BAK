@@ -1,12 +1,25 @@
 ---
 
 - hosts: all
+  vars:
 
   tasks:
-  - name: "Add user itesciatest"
+  - name: "Add user itesciadmin"
     become: true
     user:
-            name: itesciatest
+            name: itesciadmin
+  
+  - name: "Deploying package apache2"
+    become: true
+    package:
+            name: apache2
+            state: present
+
+  - name: "Deploying package bind9"
+    become: true
+    package:
+            name: bind9
+            state: present
 
   - name: "Deploying package htop"
     become: true
