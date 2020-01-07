@@ -1,0 +1,6 @@
+---
+# vars file for roles/system---
+
+users_c: [ itesciatest, itesciatest1, itesciatest2 ]
+package: [ vim, htop ] 
+

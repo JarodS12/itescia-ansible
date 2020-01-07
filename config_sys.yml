@@ -2,30 +2,5 @@
 
 - hosts: all
   become: true
-  vars:
-          users: [ itesciatest, itesciatest1, itesciatest2 ]
-          package: [ vim, htop ] 
-
-
-  tasks:
-  - name: "Add users"
-    when: users is defined
-    user:
-            name: "{{ item }}"
-    with_items: "{{ users }}"
-
-
-  - name: "Deploying packages..."
-    when: package is defined
-    package:
-            name: "{{ item }}"
-    state: present         
-    loop: "{{ package }}"
-
-  - name: "Add publique SSH keys..."
-    when: users is defined
-    authorized_key:
-            user: "{{ item }}"
-            state: present
-            key: "{{ lookup('file', '~/Github/itescia-ansible/keys/id_{{item}}.pub') }}"
-    with_items: "{{ users }}"
+  roles:
+          - system
